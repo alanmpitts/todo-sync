@@ -2,7 +2,7 @@ import sys
 import argparse
 import importlib
 
-from .edit_script import edit_script
+from todo_sync.edit_script import edit_script
 
 
 def main(argv=None):
@@ -39,8 +39,11 @@ def main(argv=None):
 
     args = parser.parse_args(argv[1:])
 
-    module_name = (__package__
-                   + '.mappers.{}_to_{}'.format(args.behind, args.ahead))
+
+    print(f"package = {__package__} \n args.behind: {args.behind}, args.ahead: {args.ahead}")
+
+    ## module_name = (__package__ + f'.mappers.{args.behind}_to_{args.ahead}')
+    module_name = ("todo_sync" + f'.mappers.{args.behind}_to_{args.ahead}')
     module = importlib.import_module(module_name)
 
     with module.behind_source(

@@ -8,7 +8,7 @@ import todo_sync.helpers as lib
 
 
 def make_fn(org_source, a_node):
-    org_dict = {'id': None, 'parent': None}
+    org_dict = {'gid': None, 'parent': None}
     o_node = None
 
     if isinstance(a_node, a.TaskNode):
@@ -30,7 +30,7 @@ def make_fn(org_source, a_node):
         o_node = org_source.make_headline_node(org_dict)
 
     elif isinstance(a_node, a.ProjectNode):
-        org_dict['id'] = a_node.name
+        org_dict['gid'] = a_node.name
         org_dict['asana_project_id'] = str(a_node.id)
         o_node = org_source.make_filename_node(org_dict)
 

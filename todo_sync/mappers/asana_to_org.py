@@ -12,7 +12,7 @@ COMPLETED_FROM_TYPE = {'TODO': False, 'DONE': True}
 
 
 def make_fn(asana_source, o_node):
-    asana_dict = {'id': None, 'parent': None}
+    asana_dict = {'gid': None, 'parent': None}
     a_node = None
 
     if isinstance(o_node, o.HeadlineNode):

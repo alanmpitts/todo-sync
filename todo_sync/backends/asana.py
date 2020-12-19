@@ -295,7 +295,7 @@ class Source(source.Source):
 
     @classmethod
     def from_client(cls, asana_client, verbose=False):
-        c = cls(asana_client.users.me()['workspaces'][0]['id'],
+        c = cls(asana_client.users.me()['workspaces'][0]['gid'],
                 asana_client.projects.find_by_workspace,
                 asana_client.projects.tasks,
                 asana_client.projects.create_in_workspace,
@@ -343,7 +343,7 @@ class Source(source.Source):
         # first get all the tags, so we can reference them later.
         all_tags = self._tag_find_by_workspace(self._w_id)
         for tag in all_tags:
-            tag_id = tag['id']
+            tag_id = tag['gid']
             tag_name = tag['name']
             tag_cache[tag_id] = tag_name
         self._tag_name_lookup = TagNameLookup(
@@ -372,7 +372,7 @@ class Source(source.Source):
         all_projects = self._project_find_by_workspace(self._w_id)
         for project in all_projects:
             project_tasks = self._project_tasks(
-                project['id'], fields=field_list)
+                project['gid'], fields=field_list)
             task_stack.extend(list(project_tasks))
 
         # gotta reverse the stack to get true DFS iteration
